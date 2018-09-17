@@ -6,7 +6,7 @@ public class Comp {
     private int id;
     private String name;
     private int count;
-    private boolean isNecessary;
+    private boolean necessary;
 
     public String getName() {
         return name;
@@ -25,11 +25,11 @@ public class Comp {
     }
 
     public boolean isNecessary() {
-        return isNecessary;
+        return necessary;
     }
 
     public void setNecessary(boolean necessary) {
-        isNecessary = necessary;
+        necessary = necessary;
     }
 
     public int getId() {

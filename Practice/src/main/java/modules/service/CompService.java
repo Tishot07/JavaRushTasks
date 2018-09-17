@@ -26,4 +26,12 @@ public class CompService {
     public void addComp(Comp comp){
         compDAO.addComp(comp);
     }
+
+    public Comp getById(int id) {
+        return compDAO.getById(id);
+    }
+
+    public void update(Comp newComp) {
+        compDAO.updateComp(newComp);
+    }
 }

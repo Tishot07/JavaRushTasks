@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Список комплектующих</title>
@@ -19,6 +20,7 @@
     <tr>
         <td>ID</td>
         <td>Наименование</td>
+        <td>Необходимость</td>
         <td>Количество</td>
         <td>Редактирвоать</td>
         <td>Удалить</td>
@@ -27,9 +29,9 @@
         <tr>
             <td>${list.id}</td>
             <td>${list.name}</td>
-                <%-- <td>${list.isNecessary}</td> --%>
+            <td>${list.necessary}</td>
             <td>${list.count}</td>
-            <td><a href="/edit/${list.id}">Update</a></td>
+            <td><a href="/update/${list.id}">Update</a></td>
             <td><a href="/delete/${list.id}">Delete</a></td>
         </tr>
     </c:forEach>
@@ -38,6 +40,8 @@
 <p>
     <a href="/addComp">Добавить комплектующие</a>
 </p>
+
+
 
 
 </body>

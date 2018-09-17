@@ -57,11 +57,21 @@ public class CompDAO {
         }
     }
 
-    public Comp updateComp(int id) {
-        return null;
+    public void updateComp(Comp comp) {
+        deleteComp(comp.getId());
+        addComp(comp);
     }
 
     public void addComp(Comp comp) {
         compList.add(comp);
+    }
+
+    public Comp getById(int id) {
+        for (Comp c:
+             compList) {
+            if (c.getId() == id)
+                return c;
+        }
+        return null;
     }
 }
