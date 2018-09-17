@@ -35,6 +35,10 @@
     </c:forEach>
 </table>
 
+<p>
+    <a href="/addComp">Добавить комплектующие</a>
+</p>
+
 
 </body>
 </html>

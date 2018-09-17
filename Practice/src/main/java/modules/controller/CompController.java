@@ -1,8 +1,11 @@
 package modules.controller;
 
+import modules.comp.Comp;
 import modules.service.CompService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CompController {
 
     @Autowired
-    public CompService service;
+    private CompService service;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main() {
@@ -24,4 +27,12 @@ public class CompController {
         service.deleteComp(id);
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/addComp", method = RequestMethod.POST)
+    public String addComp(@ModelAttribute(name = "comp") Comp newComp){
+        service.addComp(newComp);
+        //model.addAttribute("comp", newComp);
+        return "redirect:/";
+    }
+
 }
