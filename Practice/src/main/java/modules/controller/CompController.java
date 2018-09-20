@@ -1,7 +1,7 @@
 package modules.controller;
 
-import modules.comp.Comp;
-import modules.service.CompService;
+import modules.entity.EntityComp;
+import modules.service.CompServiceInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +12,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class CompController {
 
     @Autowired
-    private CompService service;
+    private CompServiceInt service;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main() {
+        System.out.println("root");
+        for (EntityComp c:
+                service.getCompList()) {
+            System.out.println("?");
+            System.out.println(c);
+        }
         return new ModelAndView("indexComp", "listComps", service.getCompList());
     }
 
@@ -25,17 +31,15 @@ public class CompController {
         return "redirect:/";
     }
 
-    @GetMapping("/addComp")
+    @RequestMapping(value = "/addComp", method = RequestMethod.GET)
     public String createCompPage(Model model) {
-        model.addAttribute(new Comp());
+        model.addAttribute("addcomp", new EntityComp());
         return "createComp";
     }
 
-    //@RequestMapping(value = "/addComp", method = RequestMethod.POST)
-    @PostMapping("/addComp")
-    public String addComp(@ModelAttribute("comp") Comp newComp){
+    @RequestMapping(value = "/addComp", method = RequestMethod.POST)
+    public String addComp(@ModelAttribute("addcomp") EntityComp newComp){
         service.addComp(newComp);
-        //model.addAttribute("comp", newComp);
         return "redirect:/";
     }
 
@@ -46,11 +50,10 @@ public class CompController {
     }
 
 
-    @PostMapping("/update/update")
-    public String updateComp(@ModelAttribute("comp") Comp newComp) {
-        System.out.println("I am post update");
+    //@PostMapping("/update/update")
+    @RequestMapping(value = "/update/update", method = RequestMethod.POST)
+    public String updateComp(@ModelAttribute("comp") EntityComp newComp) {
         service.update(newComp);
         return "redirect:/";
     }
-
 }
